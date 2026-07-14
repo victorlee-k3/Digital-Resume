@@ -446,6 +446,31 @@ header section {
 
 .exp-details { flex: 1; }
 .exp-details h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; }
+.exp-location {
+  display: block; font-size: .78rem; font-weight: 500;
+  color: var(--text2); margin-bottom: 4px;
+}
+.exp-tenure {
+  display: block; font-family: 'JetBrains Mono', monospace;
+  font-size: .68rem; font-weight: 600; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+}
+
+.exp-roles {
+  position: relative; margin-left: 4px;
+  padding-left: 18px; border-left: 2px solid var(--border);
+}
+.exp-role { position: relative; margin-bottom: 16px; }
+.exp-role:last-child { margin-bottom: 0; }
+.exp-role::before {
+  content: ''; position: absolute; top: 6px; left: -23px;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--v);
+}
+.exp-role .job-title { margin-bottom: 2px; }
+.exp-role-location {
+  display: block; font-size: .72rem; color: var(--muted);
+  margin-bottom: 10px;
+}
 
 .exp-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
 .badge {
@@ -593,9 +618,9 @@ tr:hover td { background: var(--glass); color: var(--text); }
 .edu-item:last-child { border-bottom: none; }
 .edu-item > a { display: block; line-height: 0; flex-shrink: 0; }
 .edu-logo {
-  width: 72px; height: 72px; flex-shrink: 0;
+  width: 96px; height: 96px; flex-shrink: 0;
   border-radius: var(--r); object-fit: contain;
-  background: var(--bg2); padding: 7px;
+  background: var(--bg2); padding: 8px;
   border: 1px solid var(--border); transition: var(--tr);
 }
 .edu-logo:hover { transform: scale(1.08) rotate(-3deg); border-color: var(--v); box-shadow: 0 0 20px var(--gv); }
@@ -607,38 +632,73 @@ tr:hover td { background: var(--glass); color: var(--text); }
   background: var(--gv); border: 1px solid rgba(139,92,246,.3);
   color: var(--v);
 }
+.edu-location { color: var(--text2); }
+.edu-location::before { content: '·'; margin-right: 6px; color: var(--muted); }
 
 /* ============================================================
    ACHIEVEMENTS / CERTS / VOLUNTEER
    ============================================================ */
 .ach-list { list-style: none; padding: 0; }
-.ach-list li { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.ach-list li {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 14px 0; border-bottom: 1px solid var(--border);
+}
 .ach-list li:last-child { border-bottom: none; }
+.ach-content { flex: 1; min-width: 0; }
 .ach-title {
   font-size: .9rem; font-weight: 600;
   display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
   color: var(--text); margin-bottom: 6px;
 }
+.ach-title a { color: inherit; text-decoration: none; }
+.ach-title a:hover { color: var(--v); text-decoration: underline; }
 .ach-date { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--v); font-weight: 400; }
 .ach-list p { font-size: .855rem; }
 
 .cert-list { list-style: none; padding: 0; }
 .cert-list li {
+  display: flex; align-items: center; gap: 12px;
   font-size: .875rem; color: var(--text2);
-  padding: 8px 0 8px 14px; border-bottom: 1px solid var(--border);
-  position: relative; transition: var(--tr);
-}
-.cert-list li::before {
-  content: '▸'; position: absolute; left: 0;
-  color: var(--v); transition: var(--tr);
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+  transition: var(--tr);
 }
 .cert-list li:last-child { border-bottom: none; }
-.cert-list li:hover { color: var(--text); padding-left: 20px; }
-.cert-list li:hover::before { color: var(--p); }
+.cert-list li:hover { color: var(--text); }
+.cert-logo {
+  width: 96px; height: 96px; flex-shrink: 0;
+  border-radius: var(--r); object-fit: contain;
+  background: var(--bg2); padding: 8px;
+  border: 1px solid var(--border); transition: var(--tr);
+}
+.cert-logo:hover {
+  border-color: var(--v);
+  box-shadow: 0 0 24px var(--gv), 0 0 48px var(--gv);
+  transform: scale(1.06) rotate(-2deg);
+}
+.cert-text { flex: 1; }
+.cert-text a { color: var(--v); text-decoration: none; }
+.cert-text a:hover { text-decoration: underline; }
+.cert-verify {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: .64rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--muted) !important; text-decoration: none !important;
+  margin-left: 6px; padding: 1px 7px; border-radius: 4px;
+  border: 1px solid var(--border); transition: var(--tr);
+}
+.cert-verify:hover { color: var(--v) !important; border-color: var(--border-hi); }
+.cert-date {
+  font-family: 'JetBrains Mono', monospace; font-size: .68rem;
+  color: var(--muted); white-space: nowrap;
+}
 
-.vol-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.vol-item {
+  display: flex; gap: 16px; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
 .vol-item:last-child { border-bottom: none; }
 .vol-title { font-size: .9rem; font-weight: 700; color: var(--text); }
+.vol-title a { color: inherit; text-decoration: none; }
+.vol-title a:hover { color: var(--v); text-decoration: underline; }
 .vol-role  { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--c); margin-top: 3px; }
 
 /* ============================================================
